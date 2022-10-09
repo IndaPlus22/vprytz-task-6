@@ -15,15 +15,9 @@ rovarsprak (x : xs) =
 karpsravor :: String -> String
 karpsravor [] = []
 karpsravor (x : xs) =
-  if x == 'o'
-    then karpsravor (tail xs)
+  if head xs == 'o' && head (tail xs) == x
+    then x : karpsravor (tail (tail xs))
     else x : karpsravor xs
-
--- karpsravor [x] = ['a']
--- karpsravor (x : y : z : xs) =
---  if x == z && y == 'o'
---    then x : karpsravor xs
---    else x : y : z : karpsravor xs
 
 medellangd :: Fractional a => p -> a
 medellangd s = 1.0
