@@ -1,5 +1,7 @@
 module F1 where
 
+import Data.Char
+
 fib :: Integer -> Integer
 fib 0 = 0
 fib 1 = 1
@@ -19,7 +21,22 @@ karpsravor (x : xs) =
     then x : karpsravor (tail (tail xs))
     else x : karpsravor xs
 
-medellangd :: Fractional a => p -> a
-medellangd s = 1.0
+numberofwordsinsentence :: String -> Int
+numberofwordsinsentence [] = 0
+numberofwordsinsentence (x : xs) =
+  if isAlpha x
+    then 1 + numberofwordsinsentence (dropWhile isAlpha (x : xs))
+    else numberofwordsinsentence xs
+
+medellangd :: String -> Double
+medellangd [] = 0
+medellangd (x : xs) =
+  if isAlpha x
+    then length (takeWhile isAlpha (x : xs)) + medellangd (dropWhile isAlpha (x : xs))
+    else medellangd xs
+
+--   if isAlpha x
+--     then 1 + medellangd xs
+--     else medellangd xs
 
 skyffla s = s
