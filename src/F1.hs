@@ -21,22 +21,22 @@ karpsravor (x : xs) =
     then x : karpsravor (tail (tail xs))
     else x : karpsravor xs
 
-numberofwordsinsentence :: String -> Int
-numberofwordsinsentence [] = 0
-numberofwordsinsentence (x : xs) =
+fwl :: String -> Int
+fwl [] = 0
+fwl (x : xs) =
   if isAlpha x
-    then 1 + numberofwordsinsentence (dropWhile isAlpha (x : xs))
-    else numberofwordsinsentence xs
+    then 1 + fwl xs
+    else 0
+
+swl :: String -> [Int]
+swl [] = []
+swl (x : xs) =
+  if isAlpha x
+    then fwl (x : xs) : swl (drop (fwl (x : xs)) (x : xs)) -- drop the first word, e.g "drop 3 [1,2,3,4,5]" will return "[4,5]"
+    else swl xs
 
 medellangd :: String -> Double
 medellangd [] = 0
-medellangd (x : xs) =
-  if isAlpha x
-    then length (takeWhile isAlpha (x : xs)) + medellangd (dropWhile isAlpha (x : xs))
-    else medellangd xs
-
---   if isAlpha x
---     then 1 + medellangd xs
---     else medellangd xs
+medellangd x = fromIntegral (sum (swl x)) / fromIntegral (length (swl x))
 
 skyffla s = s
