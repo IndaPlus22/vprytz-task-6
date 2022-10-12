@@ -39,4 +39,5 @@ medellangd :: String -> Double
 medellangd [] = 0
 medellangd x = fromIntegral (sum (swl x)) / fromIntegral (length (swl x))
 
-skyffla s = s
+skyffla :: [] a -> [] a
+skyffla [] = []
