@@ -39,5 +39,12 @@ medellangd :: String -> Double
 medellangd [] = 0
 medellangd x = fromIntegral (sum (swl x)) / fromIntegral (length (swl x))
 
+everyother :: [] a -> [] a
+everyother [] = []
+everyother [x] = [x]
+everyother (x : xs) = x : everyother (tail xs)
+
 skyffla :: [] a -> [] a
 skyffla [] = []
+skyffla [x] = [x]
+skyffla (x : xs) = everyother (x : xs) ++ skyffla (everyother xs)
