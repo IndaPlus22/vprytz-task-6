@@ -6,12 +6,12 @@ fib :: Integer -> Integer
 fib 0 = 0
 fib 1 = 1
 fib 2 = 1
-fib n = fib (n - 1) + fib (n - 2)
+fib n = 2 * fib (n - 2) + fib (n - 3)
 
 rovarsprak :: String -> String
 rovarsprak [] = []
 rovarsprak (x : xs) =
-  if x `elem` ['a', 'e', 'i', 'o', 'u', 'y', 'å', 'ä', 'ö']
+  if x `elem` ['a', 'e', 'i', 'o', 'u', 'y']
     then x : rovarsprak xs
     else x : 'o' : x : rovarsprak xs
 
