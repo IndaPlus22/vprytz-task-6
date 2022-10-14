@@ -8,6 +8,9 @@ fib 1 = 1
 fib 2 = 1
 fib n = 2 * fib (n - 2) + fib (n - 3)
 
+konsonant :: Char -> Bool
+konsonant c = c `notElem` "aeiouy"
+
 rovarsprak :: String -> String
 rovarsprak [] = []
 rovarsprak (x : xs) =
@@ -18,7 +21,7 @@ rovarsprak (x : xs) =
 karpsravor :: String -> String
 karpsravor [] = []
 karpsravor (x : xs) =
-  if head xs == 'o' && head (tail xs) == x
+  if konsonant x && head xs == 'o' && head (tail xs) == x
     then x : karpsravor (tail (tail xs))
     else x : karpsravor xs
 
